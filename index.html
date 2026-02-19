@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Журнал «Тритон»</title>
+  <link rel="icon" href="data:," />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=Noto+Sans:wght@400;500;600&family=Noto+Serif:wght@400;700&display=swap&subset=latin,cyrillic,cyrillic-ext" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- НАВИГАЦИЯ -->
+<nav>
+  <div class="nav-logo" data-page="home">Тритон<span>.</span></div>
+  <div class="nav-links">
+    <a class="active" id="nav-home" data-i18n="nav_home" data-page="home">Главная</a>
+    <a id="nav-issues" data-i18n="nav_issues" data-page="issues">Все выпуски</a>
+    <a id="nav-about" data-i18n="nav_about" data-page="about">О нас</a>
+  </div>
+
+  <div class="nav-search-wrap">
+    <input class="nav-search-input" id="nav-search-input" type="text" placeholder="Поиск..." data-i18n-ph="search_placeholder" />
+    <span class="nav-search-icon">🔍</span>
+  </div>
+
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="lang-ru" data-lang="ru">RU</button>
+      <button class="lang-btn" id="lang-en" data-lang="en">EN</button>
+    </div>
+</div>
+</nav>
+
+<!-- ГЛАВНАЯ -->
+<div id="page-home" class="page active">
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-tag" data-i18n="hero_tag">📰 Гимназический журнал</div>
+      <h1 data-i18n="hero_title">Добро пожаловать в<br/>журнал <em>Тритон</em></h1>
+      <p data-i18n="hero_sub">Голос нашей Гимназии — истории, идеи и моменты, которые важны. Написано студентами для студентов.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" data-page="issues" data-i18n="hero_btn_issues">Все выпуски</button>
+        <button class="btn-outline" data-page="about" data-i18n="hero_btn_about">О нас</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-num" id="stat-issues">0</div><div class="stat-label" data-i18n="stat_issues">Опубликовано выпусков</div></div>
+    <div class="stat"><div class="stat-num">2021</div><div class="stat-label" data-i18n="stat_founded">Год основания</div></div>
+    <div class="stat"><div class="stat-num">100%</div><div class="stat-label" data-i18n="stat_students">Написано студентами Гимназии</div></div>
+    <div class="stat"><div class="stat-num">∞</div><div class="stat-label" data-i18n="stat_stories">Историй впереди</div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <h2 class="section-title" data-i18n="latest_issues">Последние выпуски</h2>
+      <a class="see-all" data-page="issues" data-i18n="see_all">Все выпуски →</a>
+    </div>
+    <div class="issues-grid" id="home-issues-grid"></div>
+    <div id="home-empty" class="empty-state is-hidden">
+      <div class="empty-icon">📭</div>
+      <h3 data-i18n="empty_title">Выпусков пока нет</h3>
+      <p data-i18n="empty_home_sub">Выпуски, загруженные администратором, появятся здесь.</p>
+    </div>
+  </div>
+
+  <div class="how-it-works">
+    <div class="how-it-works-inner">
+      <h2 class="section-title" data-i18n="how_title">Как работает журнал</h2>
+      <p class="how-subtitle" data-i18n="how_sub">Всё, что нужно знать о «Тритоне» с первого взгляда</p>
+      <div class="how-cards">
+        <div class="how-card"><div class="how-card-icon">✍️</div><div class="how-card-num">01</div><h4 data-i18n="how1_title">Кто пишет</h4><p data-i18n="how1_text">Каждую статью, репортаж и колонку создают студенты Гимназии Сколково — настоящая редакция из тех, кто учится рядом с вами.</p></div>
+        <div class="how-card"><div class="how-card-icon">📅</div><div class="how-card-num">02</div><h4 data-i18n="how2_title">Когда выходит</h4><p data-i18n="how2_text">Журнал выходит дважды в год — в <strong>январе</strong> и <strong>июне</strong>. Каждый выпуск — итог целого семестра.</p></div>
+        <div class="how-card"><div class="how-card-icon">💡</div><div class="how-card-num">03</div><h4 data-i18n="how3_title">Зачем читать</h4><p data-i18n="how3_text">Здесь вы найдёте честные взгляды студентов на жизнь школы, культуру, науку и всё, что волнует молодых людей.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-strip" id="about">
+    <div class="about-inner">
+      <div>
+        <h2 data-i18n="about_title">О журнале <span>Тритон</span></h2>
+        <p data-i18n="about_p1">«Тритон» — официальный журнал Гимназии Сколково, основанный в 2021 году. Это платформа, где каждый голос имеет значение: от новостей и культуры до мнений и творчества.</p>
+        <p data-i18n="about_p2">Каждый выпуск создаётся с любовью нашей редакцией и отражает жизнь школьного сообщества.</p>
+        <p class="about-editor-line" data-i18n="about_editor">Главный редактор: <strong class="about-editor-name">Гаджикулиев Умар</strong></p>
+      </div>
+      <div class="about-features">
+        <div class="about-feature"><div class="feature-icon">✍️</div><div class="feature-text"><h4 data-i18n="feat1_title">Голоса студентов Гимназии</h4><p data-i18n="feat1_text">Каждая статья, история и колонка написана студентами Гимназии Сколково.</p></div></div>
+        <div class="about-feature"><div class="feature-icon">🎨</div><div class="feature-text"><h4 data-i18n="feat2_title">Авторский дизайн</h4><p data-i18n="feat2_text">Каждый выпуск оформляется нашей творческой командой.</p></div></div>
+        <div class="about-feature"><div class="feature-icon">📖</div><div class="feature-text"><h4 data-i18n="feat3_title">Бесплатное чтение</h4><p data-i18n="feat3_text">Все выпуски доступны бесплатно прямо здесь, онлайн.</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <footer><strong>Тритон.</strong> &nbsp;·&nbsp; <span data-i18n="footer_school">Гимназия Сколково</span> &nbsp;·&nbsp; <span data-i18n="footer_year">Основан в 2021 г.</span> &nbsp;·&nbsp; <span data-i18n="footer_editor">Гл. редактор: Гаджикулиев Умар</span></footer>
+</div>
+
+<!-- ВСЕ ВЫПУСКИ -->
+<div id="page-issues" class="page">
+  <div class="page-header">
+    <h1 data-i18n="issues_page_title">Все выпуски</h1>
+    <p data-i18n="issues_page_sub">Читайте все номера журнала «Тритон»</p>
+  </div>
+  <div class="issues-page-content">
+    <div class="issues-search-bar">
+      <div class="issues-search-wrap">
+        <input type="text" id="issues-search-input" placeholder="Поиск по выпускам..." data-i18n-ph="search_placeholder" />
+        <span class="s-icon">🔍</span>
+      </div>
+      <span class="search-count" id="issues-search-count"></span>
+    </div>
+    <div class="issues-grid" id="issues-page-grid"></div>
+    <div id="issues-empty" class="empty-state is-hidden">
+      <div class="empty-icon">📭</div>
+      <h3 data-i18n="empty_title">Выпусков пока нет</h3>
+      <p data-i18n="empty_issues_sub">Заходите позже — новые выпуски появятся здесь.</p>
+    </div>
+    <div id="issues-search-empty" class="empty-state is-hidden">
+      <div class="empty-icon">🔍</div>
+      <h3 data-i18n="search_no_results">Ничего не найдено</h3>
+      <p data-i18n="search_no_results_sub">Попробуйте другой запрос</p>
+    </div>
+  </div>
+  <footer><strong>Тритон.</strong> &nbsp;·&nbsp; <span data-i18n="footer_school">Гимназия Сколково</span> &nbsp;·&nbsp; <span data-i18n="footer_year">Основан в 2021 г.</span></footer>
+</div>
+
+<!-- О НАС -->
+<div id="page-about" class="page">
+  <div class="page-header">
+    <h1 data-i18n="about_page_title">О журнале</h1>
+    <p data-i18n="about_page_sub">«Тритон» — голос Гимназии Сколково</p>
+  </div>
+  <div class="about-strip about-strip-page">
+    <div class="about-inner">
+      <div>
+        <h2 data-i18n="about_title">О журнале <span>Тритон</span></h2>
+        <p data-i18n="about_p1">«Тритон» — официальный журнал Гимназии Сколково, основанный в 2021 году. Это платформа, где каждый голос имеет значение.</p>
+        <p data-i18n="about_p2">Каждый выпуск создаётся с любовью нашей редакцией и отражает жизнь школьного сообщества.</p>
+        <p class="about-editor-line" data-i18n="about_editor">Главный редактор: <strong class="about-editor-name">Гаджикулиев Умар</strong></p>
+      </div>
+      <div class="about-features">
+        <div class="about-feature"><div class="feature-icon">✍️</div><div class="feature-text"><h4 data-i18n="feat1_title">Голоса студентов Гимназии</h4><p data-i18n="feat1_text">Каждая статья, история и колонка написана студентами Гимназии Сколково.</p></div></div>
+        <div class="about-feature"><div class="feature-icon">🎨</div><div class="feature-text"><h4 data-i18n="feat2_title">Авторский дизайн</h4><p data-i18n="feat2_text">Каждый выпуск оформляется нашей творческой командой.</p></div></div>
+        <div class="about-feature"><div class="feature-icon">📖</div><div class="feature-text"><h4 data-i18n="feat3_title">Бесплатное чтение</h4><p data-i18n="feat3_text">Все выпуски доступны бесплатно прямо здесь, онлайн.</p></div></div>
+      </div>
+    </div>
+  </div>
+  <footer><strong>Тритон.</strong> &nbsp;·&nbsp; <span data-i18n="footer_school">Гимназия Сколково</span> &nbsp;·&nbsp; <span data-i18n="footer_year">Основан в 2021 г.</span></footer>
+</div>
+
+<!-- АДМИНИСТРАТОР -->
+
+
+<!-- PDF VIEWER -->
+<div class="modal-overlay" id="pdf-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <div class="modal-header-logo">Тритон<span>.</span></div>
+        <h3 id="modal-title">Выпуск</h3>
+      </div>
+      <div class="modal-header-right">
+        <button class="modal-fullscreen-btn" data-action="toggle-fullscreen" id="fs-btn">⛶ На весь экран</button>
+        <button class="modal-close" data-action="close-modal">✕</button>
+      </div>
+    </div>
+    <div class="modal-iframe-wrap">
+      <div id="modal-loading" class="modal-loading is-hidden">
+        <div class="loading-spinner"></div>
+        <span class="modal-loading-text" id="pdf-loading-text">Открываем PDF...</span>
+      </div>
+      <iframe id="modal-iframe" src="" allow="fullscreen"></iframe>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

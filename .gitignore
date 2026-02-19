@@ -1,0 +1,10 @@
+node_modules/
+apps/*/node_modules/
+apps/*/.next/
+apps/*/dist/
+apps/*/coverage/
+apps/api/prisma/dev.db
+apps/api/.env
+apps/web/.env.local
+*.log
+

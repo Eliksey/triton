@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Админка «Тритон»</title>
+  <link rel="icon" href="data:," />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=Noto+Sans:wght@400;500;600&family=Noto+Serif:wght@400;700&display=swap&subset=latin,cyrillic,cyrillic-ext" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<nav>
+  <div class="nav-logo" data-href="index.html">Тритон<span>.</span></div>
+  <div class="nav-links">
+    <a href="index.html" data-i18n="nav_home" data-href="index.html">Главная</a>
+    <a href="index.html" data-i18n="nav_issues" data-href="index.html">Все выпуски</a>
+    <a href="index.html" data-i18n="nav_about" data-href="index.html">О нас</a>
+  </div>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="lang-ru" data-lang="ru">RU</button>
+      <button class="lang-btn" id="lang-en" data-lang="en">EN</button>
+    </div>
+  </div>
+</nav>
+
+<div id="page-admin" class="page active">
+  <div class="admin-wrapper">
+    <div id="admin-login">
+      <div class="login-box">
+        <div class="lock-icon">🔐</div>
+        <h2>Вход для администратора</h2>
+        <p>Войдите, чтобы управлять и загружать выпуски журнала.</p>
+        <div class="form-group"><label>Имя пользователя</label><input type="text" id="login-user" placeholder="Введите имя пользователя" /></div>
+        <div class="form-group"><label>Пароль</label><input type="password" id="login-pass" placeholder="Введите пароль" /></div>
+        <button class="form-submit" data-action="login">Войти</button>
+      </div>
+    </div>
+
+    <div id="admin-dashboard" class="admin-dashboard is-hidden">
+      <div class="admin-topbar">
+        <div><h2>📋 Панель администратора</h2><span>Управление журналом «Тритон»</span></div>
+        <button class="logout-btn" data-action="logout">Выйти</button>
+      </div>
+      <div class="admin-body">
+        <div class="upload-panel">
+          <h3>📤 Добавить новый выпуск</h3>
+          <div class="form-group"><label>Название выпуска</label><input type="text" id="up-title" placeholder="Например: Весна 2025" /></div>
+          <div class="form-group"><label>Дата выпуска</label><input type="month" id="up-date" /></div>
+          <div class="form-group"><label>Краткое описание (необязательно)</label><textarea id="up-desc" placeholder="Что в этом выпуске?"></textarea></div>
+          <div class="form-group">
+            <label>Ссылка на PDF <span class="label-note">(Google Drive / Yandex Диск)</span></label>
+            <input type="url" id="up-pdf-url" placeholder="https://drive.google.com/file/d/..." />
+            <div class="url-hint">📌 В Google Drive: правая кнопка → «Открыть доступ» → «Все у кого есть ссылка» → скопировать</div>
+          </div>
+          <div class="form-group">
+            <label>Ссылка на обложку <span class="label-note">(необязательно)</span></label>
+            <input type="url" id="up-cover-url" placeholder="https://drive.google.com/file/d/..." />
+            <div id="cover-url-preview-wrap" class="cover-preview-wrap is-hidden">
+              <img id="cover-url-preview" src="" class="cover-preview-image" />
+            </div>
+            <button type="button" class="preview-btn" data-action="preview-upload-cover">👁 Предпросмотр обложки</button>
+          </div>
+          <button class="form-submit" data-action="publish-issue">Опубликовать выпуск</button>
+        </div>
+        <div class="issues-list-panel">
+          <h3>Опубликованные выпуски <span class="issues-count" id="admin-count">0</span></h3>
+          <div id="admin-issues-list">
+            <div class="empty-state"><div class="empty-icon">📭</div><h3>Выпусков пока нет</h3><p>Загрузите первый выпуск с помощью панели слева.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- РЕДАКТИРОВАНИЕ -->
+
+<div class="modal-overlay modal-overlay-soft" id="edit-modal">
+  <div class="edit-modal-card">
+    <h3 class="edit-modal-title">✏️ Редактировать выпуск</h3>
+    <p class="edit-modal-subtitle" id="edit-subtitle">Изменить данные выпуска</p>
+    <div class="form-group"><label>Название выпуска</label><input type="text" id="edit-title" placeholder="Название" /></div>
+    <div class="form-group"><label>Дата выпуска</label><input type="month" id="edit-date" /></div>
+    <div class="form-group"><label>Описание</label><textarea id="edit-desc" placeholder="Краткое описание"></textarea></div>
+    <div class="form-group"><label>Ссылка на PDF <span class="label-note">(оставьте пустым чтобы не менять)</span></label><input type="url" id="edit-pdf-url" placeholder="https://drive.google.com/file/d/..." /></div>
+    <div class="form-group">
+      <label>Ссылка на обложку <span class="label-note">(необязательно)</span></label>
+      <input type="url" id="edit-cover-url" placeholder="https://drive.google.com/file/d/..." />
+      <div id="edit-cover-preview-wrap" class="cover-preview-wrap cover-preview-wrap-edit is-hidden">
+        <img id="edit-cover-preview" src="" class="cover-preview-image cover-preview-image-edit" />
+        <div class="edit-cover-remove-wrap"><button class="btn-link-danger" data-action="remove-edit-cover">✕ Убрать обложку</button></div>
+      </div>
+      <button type="button" class="preview-btn preview-btn-edit" data-action="preview-edit-cover">👁 Предпросмотр обложки</button>
+    </div>
+    <div class="edit-modal-actions">
+      <button class="form-submit edit-save-btn" data-action="save-edit">Сохранить</button>
+      <button class="edit-cancel-btn" data-action="close-edit-modal">Отмена</button>
+    </div>
+  </div>
+</div>
+
+<!-- PDF VIEWER -->
+<div class="modal-overlay" id="pdf-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <div class="modal-header-logo">Тритон<span>.</span></div>
+        <h3 id="modal-title">Выпуск</h3>
+      </div>
+      <div class="modal-header-right">
+        <button class="modal-fullscreen-btn" data-action="toggle-fullscreen" id="fs-btn">⛶ На весь экран</button>
+        <button class="modal-close" data-action="close-modal">✕</button>
+      </div>
+    </div>
+    <div class="modal-iframe-wrap">
+      <div id="modal-loading" class="modal-loading is-hidden">
+        <div class="loading-spinner"></div>
+        <span class="modal-loading-text" id="pdf-loading-text">Открываем PDF...</span>
+      </div>
+      <iframe id="modal-iframe" src="" allow="fullscreen"></iframe>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
